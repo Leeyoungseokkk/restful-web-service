@@ -31,7 +31,7 @@ public class BoardResponseDto {
     @ApiModelProperty(example = "문의사항")
     private String note;
 
-    @ApiModelProperty(example = "시퀀스")
+    @ApiModelProperty(example = "시퀀스스스")
     private String seq;
 
 
