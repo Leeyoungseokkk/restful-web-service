@@ -1,0 +1,23 @@
+server:
+  port: 8088
+
+logging:
+  level:
+    org.springframework : DEBUG
+    org.springframework.boot.autoconfigure: ERROR
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sense_korea
+    driver-class-name: org.postgresql.Driver
+    username: test
+    password: 1234
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+
+

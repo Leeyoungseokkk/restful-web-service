@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.example.restfulwebservice.user.mapper.BoardMapper">
+
+    <resultMap id="UserResponseMap" type="BoardResponseDto">
+        <result property="name" column="NAME"></result>
+        <result property="title" column="TITLE"></result>
+        <result property="visitday" column="VISITDAY"></result>
+        <result property="visittime" column="VISITTIME"></result>
+        <result property="email" column="EMAIL"></result>
+        <result property="note" column="NOTE"></result>
+        <result property="seq" column="SEQ"></result>
+    </resultMap>
+
+    <!--방문리스트 조회-->
+    <select id="selectList" resultMap="UserResponseMap" >
+        SELECT  NAME,
+                TITLE,
+                VISITDAY,
+                VISITTIME,
+                EMAIL,
+                NOTE,
+                SEQ
+        FROM    VISIT
+    </select>
+   <!-- 글적기 -->
+        <insert id="insertVisit" parameterType="BoardRequestDto"  >
+            INSERT
+            INTO    visit
+            (NAME,
+             TITLE,
+             VISITDAY,
+             VISITTIME,
+             EMAIL,
+             NOTE
+             )
+            VALUES (#{name},
+                    #{title},
+                    To_DATE(#{visitday},'YYYY-MM-DD'),
+                    #{visittime},
+                    #{email},
+                    #{note}
+                    )
+        </insert>
+    <!--
+            <parameterMap id="UserResponseMap1" type="UserResponseDto">
+                <result property="id" column="ID"></result>
+                <result property="pw" column="PW"></result>
+                <result property="email" column="EMAIL"></result>
+                <result property="name" column="NAME"></result>
+                <result property="age" column="AGE"></result>
+                <result property="adderss" column="ADDRESS"></result>
+            </parameterMap>
+
+
+
+            <update id="updateUser" parameterType="UserRequestDto">
+                UPDATE  USERINFO
+                SET     PW = #{PW},
+                        EAMIL = #{EMAIL},
+                        NAME = #{NAME},
+                        AGE = #{AGE},
+                        ADDRESS = #{ADDRESS}
+                WHERE   ID = #{id}
+            </update>
+-->
+            <update id="updateUser" parameterType="BoardRequestDto">
+                UPDATE  visit
+                SET         TITLE = #{title},
+                            VISITDAY = To_DATE(#{visitday},'YYYY-MM-DD'),
+                            VISITTIME = #{visittime},
+                            EMAIL = #{email},
+                            NOTE = #{note}
+                WHERE   NAME = #{name}
+            </update>
+
+            <delete id="deleteUser" parameterType="BoardRequestDto">
+                DELETE
+                FROM visit
+                WHERE NAME = #{name}
+            </delete>
+
+</mapper>
