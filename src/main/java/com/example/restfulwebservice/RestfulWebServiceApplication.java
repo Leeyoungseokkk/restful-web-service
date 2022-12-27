@@ -24,7 +24,6 @@ public class RestfulWebServiceApplication extends SpringBootServletInitializer{
     public static void main(String[] args) {
         SpringApplication.run(RestfulWebServiceApplication.class, args);
 
-
         }
     }
 

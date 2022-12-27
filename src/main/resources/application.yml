@@ -9,10 +9,10 @@ logging:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/sense_korea
-    driver-class-name: org.postgresql.Driver
-    username: test
-    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://3.35.252.181:3306/new_schema?serverTimezone=Asia/Seoul
+    username: sensecoding
+    password: dudtjrdl@@
 
   mvc:
     pathmatch:

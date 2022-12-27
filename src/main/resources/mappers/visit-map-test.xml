@@ -25,26 +25,28 @@
                 EMAIL,
                 NOTE,
                 SEQ
-        FROM    VISIT
+        FROM    new_schema.visit;
     </select>
    <!-- 글적기 -->
         <insert id="insertVisit" parameterType="BoardRequestDto"  >
             INSERT
-            INTO    visit
+            INTO    new_schema.visit
             (NAME,
              TITLE,
              VISITDAY,
              VISITTIME,
              EMAIL,
-             NOTE
+             NOTE,
+             SEQ
              )
             VALUES (#{name},
                     #{title},
-                    To_DATE(#{visitday},'YYYY-MM-DD'),
+                    #{visitday},
                     #{visittime},
                     #{email},
-                    #{note}
-                    )
+                    #{note},
+                    NEXTVAL(MY_SEQ)
+                    );
         </insert>
     <!--
             <parameterMap id="UserResponseMap1" type="UserResponseDto">
@@ -69,19 +71,19 @@
             </update>
 -->
             <update id="updateUser" parameterType="BoardRequestDto">
-                UPDATE  visit
+                UPDATE  new_schema.visit
                 SET         TITLE = #{title},
-                            VISITDAY = To_DATE(#{visitday},'YYYY-MM-DD'),
+                            VISITDAY = #{visitday},
                             VISITTIME = #{visittime},
                             EMAIL = #{email},
                             NOTE = #{note}
-                WHERE   NAME = #{name}
+                WHERE   NAME = #{name};
             </update>
 
             <delete id="deleteUser" parameterType="BoardRequestDto">
                 DELETE
-                FROM visit
-                WHERE NAME = #{name}
+                FROM new_schema.visit
+                WHERE NAME = #{name};
             </delete>
 
 </mapper>
