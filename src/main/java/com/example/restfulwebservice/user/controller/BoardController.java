@@ -52,7 +52,7 @@ public class BoardController {
             @ApiImplicitParam(name = "email" , value = "이메일" , required = false ,dataTypeClass = String.class),
             @ApiImplicitParam(name = "note" , value = "문의사항" , required = false ,dataTypeClass = String.class)
     })
-    public Integer postUsers(String name , String title, String visitday,String visittime ,String email, String note){
+    public Integer postUsers(@PathVariable String name , String title, String visitday,String visittime ,String email, String note){
 
         BoardRequestDto paramDto = BoardRequestDto.builder()
                 .name(name)
@@ -66,6 +66,7 @@ public class BoardController {
     }
 
     //회원 수정
+
     @PutMapping("/visit/{name}")
     @ApiOperation(value = "방문 정보 수정")
     @ApiImplicitParams({

@@ -31,13 +31,9 @@ public class BoardResponseDto {
     @ApiModelProperty(example = "문의사항")
     private String note;
 
-    @ApiModelProperty(example = "시퀀스스스")
+    @ApiModelProperty(example = "시퀀스,글번호")
     private String seq;
 
-
-    @Setter
-    @ApiModelProperty("user")
-    private String user;
 
 
 }
