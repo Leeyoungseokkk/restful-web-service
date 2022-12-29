@@ -1,6 +1,7 @@
 package com.example.restfulwebservice.user.Model.Dto;
 
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,27 +13,27 @@ import lombok.NoArgsConstructor;
 @Builder
 public class BoardRequestDto {
 
-    @ApiModelProperty(example = "이름")
+    @ApiParam(example = "이름")
     private String name;
 
-    @ApiModelProperty(example = "제목,방문목적")
+    @ApiParam(example = "제목,방문목적")
     private String title;
 
-    @ApiModelProperty(example = "방문날짜")
+    @ApiParam(example = "방문날짜")
     private String visitday;
 
-    @ApiModelProperty(example = "방문시간")
+    @ApiParam(example = "방문시간")
     private String visittime;
 
-    @ApiModelProperty(example = "이메일")
+    @ApiParam(example = "이메일")
     private String email;
 
-    @ApiModelProperty(example = "문의사항")
+    @ApiParam(example = "문의사항")
     private String note;
 
-    @ApiModelProperty(example = "날짜")
+    @ApiParam(example = "날짜")
     private String today;
 
-    @ApiModelProperty(example = "시퀀스")
+    @ApiParam(example = "시퀀스")
     private String seq;
 }

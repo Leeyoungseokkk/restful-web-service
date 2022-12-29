@@ -35,14 +35,14 @@ public class BoardController {
 
     }
 
-    @GetMapping("/visit")
+    @GetMapping("/visit-get")
     @ApiOperation(value = "방문 리스트")
     public List<BoardResponseDto> getList(){
 
         return boardService.getvisitlist();
     }
     //회원 가입
-    @PostMapping("/visit")
+    @PostMapping("/visit-post")
     @ApiOperation(value = " 방문 입력")
     @ApiImplicitParams({
     @ApiImplicitParam(name = "name" , value = "이름" , required = false ,dataTypeClass = String.class),
@@ -52,7 +52,7 @@ public class BoardController {
             @ApiImplicitParam(name = "email" , value = "이메일" , required = false ,dataTypeClass = String.class),
             @ApiImplicitParam(name = "note" , value = "문의사항" , required = false ,dataTypeClass = String.class)
     })
-    public Integer postUsers(@PathVariable String name , String title, String visitday,String visittime ,String email, String note){
+    public Integer postUsers(String name , String title, String visitday,String visittime ,String email, String note){
 
         BoardRequestDto paramDto = BoardRequestDto.builder()
                 .name(name)
@@ -67,7 +67,7 @@ public class BoardController {
 
     //회원 수정
 
-    @PutMapping("/visit/{name}")
+    @PutMapping("/visit-put/{name}")
     @ApiOperation(value = "방문 정보 수정")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "name" , value = "이름" , required = true ,dataTypeClass = String.class),
@@ -91,7 +91,7 @@ public class BoardController {
 
 
     //회원 삭제
-    @DeleteMapping("/visit/{name}")
+    @DeleteMapping("/visit-delete/{name}")
     @ApiOperation(value = "방문정보 삭제")
     @ApiImplicitParam(name = "name" , value = "이름" , required = true ,dataTypeClass = String.class)
     public Integer deleteUser(@PathVariable String name){
