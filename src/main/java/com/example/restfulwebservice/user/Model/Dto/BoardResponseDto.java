@@ -22,7 +22,7 @@ public class BoardResponseDto {
     private String visitday;
 
     @ApiModelProperty(example = "방문시간")
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "HH:mm:ss",timezone = "Asia/Seoul")
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "HH:mm",timezone = "Asia/Seoul")
     private String visittime;
 
     @ApiModelProperty(example = "이메일")
@@ -31,8 +31,8 @@ public class BoardResponseDto {
     @ApiModelProperty(example = "문의사항")
     private String note;
 
-    @ApiModelProperty(example = "시퀀스,글번호")
-    private String seq;
+    //@ApiModelProperty(example = "시퀀스,글번호")
+   // private String seq;
 
 
 

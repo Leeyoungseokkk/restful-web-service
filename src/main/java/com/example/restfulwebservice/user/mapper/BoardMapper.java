@@ -11,14 +11,14 @@ public interface BoardMapper {
     List<BoardResponseDto>selectList();
 
     //방문 작성
-    Integer insertVisit(BoardRequestDto paramDto);
+    void insertVisit(BoardRequestDto paramDto);
 
 
     //회원 수정
 
-    Integer updateUser(BoardRequestDto paramDto);
+    //List<BoardResponseDto> updateUser(BoardRequestDto paramDto);
 
     // 글 삭제
 
-    Integer deleteUser(BoardRequestDto paramDto);
+    //List<BoardResponseDto> deleteUser(BoardRequestDto paramDto);
 }

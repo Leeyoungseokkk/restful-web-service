@@ -21,20 +21,21 @@ import java.util.List;
             return boardMapper.selectList();
         }
         //방문 작성
-        public Integer postUsers(BoardRequestDto paramDto){
+        public void postUsers(BoardRequestDto paramDto) {
 
-            return boardMapper.insertVisit(paramDto);
+            boardMapper.insertVisit(paramDto);
         }
+        /*
         //수정 수정
-        public Integer updateUser(BoardRequestDto paramDto){
+        public List<BoardResponseDto> updateUser(BoardRequestDto paramDto){
 
             return boardMapper.updateUser(paramDto);
         }
         //방문 삭제
-        public Integer deleteUser(BoardRequestDto paramDto){
+        public List<BoardResponseDto> deleteUser(BoardRequestDto paramDto){
 
             return boardMapper.deleteUser(paramDto);
         }
-
+*/
 
     }

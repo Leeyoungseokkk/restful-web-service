@@ -42,6 +42,7 @@ public class BoardController {
         return boardService.getvisitlist();
     }
     //회원 가입
+    /*
     @PostMapping("/visit-post")
     @ApiOperation(value = " 방문 입력")
     @ApiImplicitParams({
@@ -52,7 +53,7 @@ public class BoardController {
             @ApiImplicitParam(name = "email" , value = "이메일" , required = false ,dataTypeClass = String.class),
             @ApiImplicitParam(name = "note" , value = "문의사항" , required = false ,dataTypeClass = String.class)
     })
-    public Integer postUsers(String name , String title, String visitday,String visittime ,String email, String note){
+    public  List<BoardResponseDto> postUsers(@RequestBody String name , String title, String visitday,String visittime ,String email, String note){
 
         BoardRequestDto paramDto = BoardRequestDto.builder()
                 .name(name)
@@ -64,25 +65,55 @@ public class BoardController {
                 .build();
         return  boardService.postUsers(paramDto);
     }
-
-    //회원 수정
-
-    @PutMapping("/visit-put/{name}")
-    @ApiOperation(value = "방문 정보 수정")
+*/
+    @PostMapping("/visit-post")
+    @ApiOperation(value = " 방문 입력")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "name" , value = "이름" , required = true ,dataTypeClass = String.class),
+            @ApiImplicitParam(name = "name" , value = "이름" , required = false ,dataTypeClass = String.class),
             @ApiImplicitParam(name = "title" , value = "제목" , required = false ,dataTypeClass = String.class),
             @ApiImplicitParam(name = "visitday" , value = "방문날짜" , required = false ,dataTypeClass = LocalDate.class),
             @ApiImplicitParam(name = "visittime" , value = "방문시간" , required = false ,dataTypeClass = LocalTime.class),
             @ApiImplicitParam(name = "email" , value = "이메일" , required = false ,dataTypeClass = String.class),
             @ApiImplicitParam(name = "note" , value = "문의사항" , required = false ,dataTypeClass = String.class)
     })
-    public Integer updateUser(@PathVariable String name , String title, String visitday,String visittime ,String email, String note) {
+    public void  postUsers(String name,
+                            String title,
+                                            String visitday,
+                                            String visittime,
+                                             String email, String note){
+
         BoardRequestDto paramDto = BoardRequestDto.builder()
                 .name(name)
                 .title(title)
                 .visitday(visitday)
                 .visittime(visittime)
+                .email(email)
+                .note(note)
+                .build();
+        boardService.postUsers(paramDto);
+    }
+
+    //회원 수정
+/*
+    @PutMapping("/visit-put/{name}")
+    @ApiOperation(value = "방문 정보 수정")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "name" , value = "이름" , required = true ,dataTypeClass = String.class),
+            @ApiImplicitParam(name = "title" , value = "제목" , required = false ,dataTypeClass = String.class),
+            //@ApiImplicitParam(name = "visitday" , value = "방문날짜" , required = false ,dataTypeClass = LocalDate.class),
+            //@ApiImplicitParam(name = "visittime" , value = "방문시간" , required = false ,dataTypeClass = LocalTime.class),
+            @ApiImplicitParam(name = "email" , value = "이메일" , required = false ,dataTypeClass = String.class),
+            @ApiImplicitParam(name = "note" , value = "문의사항" , required = false ,dataTypeClass = String.class)
+    })
+    public List<BoardResponseDto> updateUser(@PathVariable String name , String title,
+                                             //String visitday,
+                                             //String visittime ,
+                                             String email, String note) {
+        BoardRequestDto paramDto = BoardRequestDto.builder()
+                .name(name)
+                .title(title)
+                //.visitday(visitday)
+                //.visittime(visittime)
                 .email(email)
                 .note(note)
                 .build();
@@ -94,13 +125,13 @@ public class BoardController {
     @DeleteMapping("/visit-delete/{name}")
     @ApiOperation(value = "방문정보 삭제")
     @ApiImplicitParam(name = "name" , value = "이름" , required = true ,dataTypeClass = String.class)
-    public Integer deleteUser(@PathVariable String name){
+    public List<BoardResponseDto> deleteUser(@PathVariable String name){
         BoardRequestDto paramDto = BoardRequestDto.builder()
                 .name(name)
                 .build();
         return boardService.deleteUser(paramDto);
     }
-
+*/
 
 
 }
