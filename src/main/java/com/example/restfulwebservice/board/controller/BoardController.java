@@ -1,11 +1,9 @@
-package com.example.restfulwebservice.user.controller;
+package com.example.restfulwebservice.board.controller;
 
-import com.example.restfulwebservice.user.Model.Dto.BoardRequestDto;
-import com.example.restfulwebservice.user.Model.Dto.BoardResponseDto;
-import com.example.restfulwebservice.user.service.BoardService;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import com.example.restfulwebservice.board.Model.Dto.BoardRequestDto;
+import com.example.restfulwebservice.board.Model.Dto.BoardResponseDto;
+import com.example.restfulwebservice.board.service.BoardService;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,8 +33,15 @@ public class BoardController {
 
     }
 
-    @GetMapping("/visit-get")
+    @GetMapping("/visit")
     @ApiOperation(value = "방문 리스트")
+    @ApiResponses({
+            @ApiResponse(code = 200,message = "야호 ! 성공"),
+            @ApiResponse(code = 401,message = "실패1"),
+            @ApiResponse(code = 403,message = "권한없어요"),
+            @ApiResponse(code = 404,message = "페이지가 없어요"),
+            @ApiResponse(code = 500,message = "서버에러에요!"),
+    })
     public List<BoardResponseDto> getList(){
 
         return boardService.getvisitlist();
@@ -66,7 +71,7 @@ public class BoardController {
         return  boardService.postUsers(paramDto);
     }
 */
-    @PostMapping("/visit-post")
+    @PostMapping("/visit")
     @ApiOperation(value = " 방문 입력")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "name" , value = "이름" , required = false ,dataTypeClass = String.class),
@@ -76,7 +81,14 @@ public class BoardController {
             @ApiImplicitParam(name = "email" , value = "이메일" , required = false ,dataTypeClass = String.class),
             @ApiImplicitParam(name = "note" , value = "문의사항" , required = false ,dataTypeClass = String.class)
     })
-    public void  postUsers(String name,
+    @ApiResponses({
+            @ApiResponse(code = 200,message = "야호 ! 성공"),
+            @ApiResponse(code = 401,message = "실패1"),
+            @ApiResponse(code = 403,message = "권한없어요"),
+            @ApiResponse(code = 404,message = "페이지가 없어요"),
+            @ApiResponse(code = 500,message = "서버에러에요!"),
+    })
+    public void  postVisit(String name,
                             String title,
                                             String visitday,
                                             String visittime,
@@ -90,48 +102,64 @@ public class BoardController {
                 .email(email)
                 .note(note)
                 .build();
-        boardService.postUsers(paramDto);
+        boardService.postVisit(paramDto);
     }
 
     //회원 수정
-/*
-    @PutMapping("/visit-put/{name}")
+
+    @PutMapping("/visit")
     @ApiOperation(value = "방문 정보 수정")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "name" , value = "이름" , required = true ,dataTypeClass = String.class),
+            @ApiImplicitParam(name = "seq" , value = "글번호" , required = true ,dataTypeClass = int.class),
+            @ApiImplicitParam(name = "name" , value = "이름" , required = false ,dataTypeClass = String.class),
             @ApiImplicitParam(name = "title" , value = "제목" , required = false ,dataTypeClass = String.class),
-            //@ApiImplicitParam(name = "visitday" , value = "방문날짜" , required = false ,dataTypeClass = LocalDate.class),
-            //@ApiImplicitParam(name = "visittime" , value = "방문시간" , required = false ,dataTypeClass = LocalTime.class),
+            @ApiImplicitParam(name = "visitday" , value = "방문날짜" , required = false ,dataTypeClass = LocalDate.class),
+            @ApiImplicitParam(name = "visittime" , value = "방문시간" , required = false ,dataTypeClass = LocalTime.class),
             @ApiImplicitParam(name = "email" , value = "이메일" , required = false ,dataTypeClass = String.class),
             @ApiImplicitParam(name = "note" , value = "문의사항" , required = false ,dataTypeClass = String.class)
     })
-    public List<BoardResponseDto> updateUser(@PathVariable String name , String title,
-                                             //String visitday,
-                                             //String visittime ,
+    @ApiResponses({
+            @ApiResponse(code = 200,message = "야호 ! 성공"),
+            @ApiResponse(code = 401,message = "실패1"),
+            @ApiResponse(code = 403,message = "권한없어요"),
+            @ApiResponse(code = 404,message = "페이지가 없어요"),
+            @ApiResponse(code = 500,message = "서버에러에요!"),
+    })
+    public void updateUser(int seq ,String name, String title,
+                                             String visitday,
+                                             String visittime,
                                              String email, String note) {
         BoardRequestDto paramDto = BoardRequestDto.builder()
+                .seq(seq)
                 .name(name)
                 .title(title)
-                //.visitday(visitday)
-                //.visittime(visittime)
+                .visitday(visitday)
+                .visittime(visittime)
                 .email(email)
                 .note(note)
                 .build();
-        return  boardService.updateUser(paramDto);
+          boardService.updateVisit(paramDto);
     }
 
 
     //회원 삭제
-    @DeleteMapping("/visit-delete/{name}")
-    @ApiOperation(value = "방문정보 삭제")
-    @ApiImplicitParam(name = "name" , value = "이름" , required = true ,dataTypeClass = String.class)
-    public List<BoardResponseDto> deleteUser(@PathVariable String name){
+    @DeleteMapping("/visit")
+    @ApiOperation(value = "방문 정보 삭제")
+    @ApiImplicitParam(name = "seq" , value = "글번호" , required = true ,dataTypeClass = int.class)
+    @ApiResponses({
+            @ApiResponse(code = 200,message = "야호 ! 성공"),
+            @ApiResponse(code = 401,message = "실패1"),
+            @ApiResponse(code = 403,message = "권한없어요"),
+            @ApiResponse(code = 404,message = "페이지가 없어요"),
+            @ApiResponse(code = 500,message = "서버에러에요!"),
+    })
+    public void deleteUser(int seq){
         BoardRequestDto paramDto = BoardRequestDto.builder()
-                .name(name)
+                .seq(seq)
                 .build();
-        return boardService.deleteUser(paramDto);
+        boardService.deleteVisit(paramDto);
     }
-*/
+
 
 
 }

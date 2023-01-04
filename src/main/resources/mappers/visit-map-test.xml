@@ -4,7 +4,7 @@
 
 
 
-<mapper namespace="com.example.restfulwebservice.user.mapper.BoardMapper">
+<mapper namespace="com.example.restfulwebservice.board.mapper.BoardMapper">
 
     <resultMap id="UserResponseMap" type="BoardResponseDto">
         <result property="name" column="NAME"></result>
@@ -23,7 +23,8 @@
                 VISITDAY,
                 VISITTIME,
                 EMAIL,
-                NOTE
+                NOTE,
+                SEQ
         FROM    visit
     </select>
    <!-- 글적기 -->
@@ -35,7 +36,8 @@
              VISITDAY,
              VISITTIME,
              EMAIL,
-             NOTE
+             NOTE,
+             SEQ
              )
 
             VALUES (#{name},
@@ -43,7 +45,8 @@
                     #{visitday},
                     #{visittime},
                     #{email},
-                    #{note}
+                    #{note},
+                    NEXTVAL(new_schema.sense_seq)
                     )
         </insert>
     <!--
@@ -92,17 +95,20 @@
             </update>
 -->
             <update id="updateUser" parameterType="BoardRequestDto">
-                UPDATE  new_schema.visitt
-                SET         TITLE = #{title},
+                UPDATE  new_schema.visit
+                SET         NAME = #{name},
+                            TITLE = #{title},
                             EMAIL = #{email},
-                            NOTE = #{note}
-                WHERE   NAME = #{name};
+                            NOTE = #{note},
+                            VISITDAY = #{visitday},
+                            VISITTIME = #{visittime}
+                WHERE   SEQ = #{seq}
             </update>
 
             <delete id="deleteUser" parameterType="BoardRequestDto">
                 DELETE
-                FROM new_schema.visitt
-                WHERE NAME = #{name};
+                FROM new_schema.visit
+                WHERE SEQ = #{seq}
             </delete>
 
 </mapper>

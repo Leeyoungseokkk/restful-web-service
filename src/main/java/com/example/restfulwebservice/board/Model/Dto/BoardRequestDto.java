@@ -1,6 +1,5 @@
-package com.example.restfulwebservice.user.Model.Dto;
+package com.example.restfulwebservice.board.Model.Dto;
 
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,5 +34,5 @@ public class BoardRequestDto {
     private String today;
 
     @ApiParam(example = "시퀀스")
-    private String seq;
+    private int seq;
 }

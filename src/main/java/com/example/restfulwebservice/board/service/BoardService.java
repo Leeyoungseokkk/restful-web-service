@@ -1,7 +1,7 @@
-package com.example.restfulwebservice.user.service;
-import com.example.restfulwebservice.user.Model.Dto.BoardRequestDto;
-import com.example.restfulwebservice.user.Model.Dto.BoardResponseDto;
-import com.example.restfulwebservice.user.mapper.BoardMapper;
+package com.example.restfulwebservice.board.service;
+import com.example.restfulwebservice.board.Model.Dto.BoardRequestDto;
+import com.example.restfulwebservice.board.Model.Dto.BoardResponseDto;
+import com.example.restfulwebservice.board.mapper.BoardMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,21 +21,21 @@ import java.util.List;
             return boardMapper.selectList();
         }
         //방문 작성
-        public void postUsers(BoardRequestDto paramDto) {
+        public void postVisit(BoardRequestDto paramDto) {
 
             boardMapper.insertVisit(paramDto);
         }
-        /*
-        //수정 수정
-        public List<BoardResponseDto> updateUser(BoardRequestDto paramDto){
 
-            return boardMapper.updateUser(paramDto);
+        //수정 수정
+        public void updateVisit(BoardRequestDto paramDto){
+
+             boardMapper.updateVisit(paramDto);
         }
         //방문 삭제
-        public List<BoardResponseDto> deleteUser(BoardRequestDto paramDto){
+        public void  deleteVisit(BoardRequestDto paramDto){
 
-            return boardMapper.deleteUser(paramDto);
+             boardMapper.deleteVisit(paramDto);
         }
-*/
+
 
     }

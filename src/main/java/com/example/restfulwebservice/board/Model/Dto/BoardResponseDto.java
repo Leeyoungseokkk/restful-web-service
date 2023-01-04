@@ -1,4 +1,4 @@
-package com.example.restfulwebservice.user.Model.Dto;
+package com.example.restfulwebservice.board.Model.Dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -31,8 +31,8 @@ public class BoardResponseDto {
     @ApiModelProperty(example = "문의사항")
     private String note;
 
-    //@ApiModelProperty(example = "시퀀스,글번호")
-   // private String seq;
+    @ApiModelProperty(example = "시퀀스,글번호")
+    private int seq;
 
 
 
