@@ -4,49 +4,49 @@
 
 
 
-<mapper namespace="com.example.restfulwebservice.board.mapper.BoardMapper">
+<mapper namespace="com.example.restfulwebservice.user.mapper.UserMapper">
 
-    <resultMap id="VisitResponseMap" type="BoardResponseDto">
+    <resultMap id="UserResponseMap" type="UserResponseDto">
+        <result property="id" column="ID"></result>
+        <result property="password" column="PASSWORD"></result>
         <result property="name" column="NAME"></result>
-        <result property="title" column="TITLE"></result>
-        <result property="visitday" column="VISITDAY"></result>
-        <result property="visittime" column="VISITTIME"></result>
-        <result property="email" column="EMAIL"></result>
-        <result property="note" column="NOTE"></result>
-        <result property="seq" column="SEQ"></result>
+        <result property="age" column="AGE"></result>
+        <result property="phone" column="PHONE"></result>
+        <result property="gender" column="GENDER"></result>
+        <result property="userSeq" column="USER_SEQ"></result>
     </resultMap>
 
     <!--방문리스트 조회-->
-    <select id="selectList" resultMap="VisitResponseMap" >
-        SELECT  NAME,
-                TITLE,
-                VISITDAY,
-                VISITTIME,
-                EMAIL,
-                NOTE,
-                SEQ
-        FROM    visit
+    <select id="selectUser" resultMap="UserResponseMap" >
+        SELECT  ID,
+                PASSWORD,
+                NAME,
+                AGE,
+                PHONE,
+                GENDER,
+                USER_SEQ
+        FROM    user
     </select>
    <!-- 글적기 -->
-        <insert id="insertVisit" parameterType="String">
+        <insert id="insertUser" parameterType="String">
             INSERT
-            INTO    visit
-            (NAME,
-             TITLE,
-             VISITDAY,
-             VISITTIME,
-             EMAIL,
-             NOTE,
-             SEQ
+            INTO    user
+            (ID,
+             PASSWORD,
+             NAME,
+             AGE,
+             PHONE,
+             GENDER,
+             USER_SEQ
              )
 
-            VALUES (#{name},
-                    #{title},
-                    #{visitday},
-                    #{visittime},
-                    #{email},
-                    #{note},
-                    NEXTVAL(new_schema.sense_seq)
+            VALUES (#{id},
+                    #{password},
+                    #{name},
+                    #{age},
+                    #{phone},
+                    #{gender},
+                    NEXTVAL(new_schema.user_seq)
                     )
         </insert>
     <!--
@@ -94,21 +94,21 @@
                 WHERE   ID = #{id}
             </update>
 -->
-            <update id="updateVisit" parameterType="BoardRequestDto">
-                UPDATE  new_schema.visit
-                SET         NAME = #{name},
-                            TITLE = #{title},
-                            EMAIL = #{email},
-                            NOTE = #{note},
-                            VISITDAY = #{visitday},
-                            VISITTIME = #{visittime}
-                WHERE   SEQ = #{seq}
+            <update id="updateUser" parameterType="UserRequestDto">
+                UPDATE  user
+                SET         ID = #{id},
+                            PASSWORD = #{password},
+                            NAME = #{name},
+                            AGE = #{age},
+                            PHONE = #{phone},
+                            GENDER = #{gender}
+                WHERE   USER_SEQ = #{userSeq}
             </update>
 
-            <delete id="deleteVisit" parameterType="BoardRequestDto">
+            <delete id="deleteUser" parameterType="UserRequestDto">
                 DELETE
-                FROM new_schema.visit
-                WHERE SEQ = #{seq}
+                FROM user
+                WHERE USER_SEQ = #{userSeq}
             </delete>
 
 </mapper>

@@ -125,7 +125,7 @@ public class BoardController {
             @ApiResponse(code = 404,message = "페이지가 없어요"),
             @ApiResponse(code = 500,message = "서버에러에요!"),
     })
-    public void updateUser(int seq ,String name, String title,
+    public void updateVisit(int seq ,String name, String title,
                                              String visitday,
                                              String visittime,
                                              String email, String note) {

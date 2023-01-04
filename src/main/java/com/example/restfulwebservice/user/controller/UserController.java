@@ -105,7 +105,7 @@ public class UserController {
 
     //회원 수정
 
-    @PutMapping("/visit")
+    @PutMapping("/user")
     @ApiOperation(value = "방문 정보 수정")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "userSeq" , value = "회원 번호" , required = true ,dataTypeClass = int.class),
