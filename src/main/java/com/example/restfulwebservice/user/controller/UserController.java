@@ -75,7 +75,7 @@ public class UserController {
     }
 */
     @PostMapping("/user")
-    @ApiOperation(value = " 방문 입력")
+    @ApiOperation(value = " 회원가입 ")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id" , value = "아이디" , required = false ,dataTypeClass = String.class),
             @ApiImplicitParam(name = "password" , value = "비밀번호" , required = false ,dataTypeClass = String.class),
@@ -106,7 +106,7 @@ public class UserController {
     //회원 수정
 
     @PutMapping("/user")
-    @ApiOperation(value = "방문 정보 수정")
+    @ApiOperation(value = "회원 정보 수정")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "userSeq" , value = "회원 번호" , required = true ,dataTypeClass = int.class),
             @ApiImplicitParam(name = "id" , value = "아이디" , required = false ,dataTypeClass = String.class),
@@ -139,7 +139,7 @@ public class UserController {
 
     //회원 삭제
     @DeleteMapping("/user")
-    @ApiOperation(value = "방문 정보 삭제")
+    @ApiOperation(value = "회원 정보 삭제")
     @ApiImplicitParam(name = "userSeq" , value = "회원 번호" , required = true ,dataTypeClass = int.class)
     @ApiResponses({
             @ApiResponse(code = 200,message = "야호 ! 성공"),
