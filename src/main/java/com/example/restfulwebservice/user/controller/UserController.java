@@ -47,7 +47,7 @@ public class UserController {
     })
     public List<UserResponseDto> getList(){
 
-        return userService.getvisitlist();
+        return userService.postUserlist();
     }
     //회원 가입
     /*
@@ -79,10 +79,7 @@ public class UserController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id" , value = "아이디" , required = false ,dataTypeClass = String.class),
             @ApiImplicitParam(name = "password" , value = "비밀번호" , required = false ,dataTypeClass = String.class),
-            @ApiImplicitParam(name = "name" , value = "이름" , required = false ,dataTypeClass = String.class),
-            @ApiImplicitParam(name = "age" , value = "나이" , required = false ,dataTypeClass = int.class),
-            @ApiImplicitParam(name = "phone" , value = "전화번호" , required = false ,dataTypeClass = int.class),
-            @ApiImplicitParam(name = "gender" , value = "성별" , required = false ,dataTypeClass = String.class)
+            @ApiImplicitParam(name = "nickname" , value = "닉네임" , required = false ,dataTypeClass = String.class)
     })
     @ApiResponses({
             @ApiResponse(code = 200,message = "야호 ! 성공"),
@@ -91,14 +88,11 @@ public class UserController {
             @ApiResponse(code = 404,message = "페이지가 없어요"),
             @ApiResponse(code = 500,message = "서버에러에요!"),
     })
-    public void  postUsers(String id, String password, String name, int age, int phone, String gender){
+    public void  postUsers(String id, String password, String nickname){
         UserRequestDto paramDto = UserRequestDto.builder()
                 .id(id)
                 .password(password)
-                .name(name)
-                .age(age)
-                .phone(phone)
-                .gender(gender)
+                .nickname(nickname)
                 .build();
         userService.postUser(paramDto);
     }
@@ -111,10 +105,7 @@ public class UserController {
             @ApiImplicitParam(name = "userSeq" , value = "회원 번호" , required = true ,dataTypeClass = int.class),
             @ApiImplicitParam(name = "id" , value = "아이디" , required = false ,dataTypeClass = String.class),
             @ApiImplicitParam(name = "password" , value = "비밀번호" , required = false ,dataTypeClass = String.class),
-            @ApiImplicitParam(name = "name" , value = "이름" , required = false ,dataTypeClass = String.class),
-            @ApiImplicitParam(name = "age" , value = "나이" , required = false ,dataTypeClass = int.class),
-            @ApiImplicitParam(name = "phone" , value = "전화번호" , required = false ,dataTypeClass = int.class),
-            @ApiImplicitParam(name = "gender" , value = "성별" , required = false ,dataTypeClass = String.class)
+            @ApiImplicitParam(name = "nickname" , value = "닉네임" , required = false ,dataTypeClass = String.class)
     })
     @ApiResponses({
             @ApiResponse(code = 200,message = "야호 ! 성공"),
@@ -123,15 +114,12 @@ public class UserController {
             @ApiResponse(code = 404,message = "페이지가 없어요"),
             @ApiResponse(code = 500,message = "서버에러에요!"),
     })
-    public void updateUser(int userSeq, String id, String password, String name, int age, int phone, String gender){
+    public void updateUser(int userSeq, String id, String password, String nickname){
         UserRequestDto paramDto = UserRequestDto.builder()
                 .userSeq(userSeq)
                 .id(id)
                 .password(password)
-                .name(name)
-                .age(age)
-                .phone(phone)
-                .gender(gender)
+                .nickname(nickname)
                 .build();
         userService.updateUser(paramDto);
     }

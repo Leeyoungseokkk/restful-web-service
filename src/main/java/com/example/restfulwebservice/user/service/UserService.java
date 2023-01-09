@@ -20,7 +20,7 @@ public class UserService {
     @Autowired
     public UserService(UserMapper userMapper){this.userMapper = userMapper;}
     //방문 리스트
-    public List<UserResponseDto> getvisitlist() {
+    public List<UserResponseDto> postUserlist() {
 
         return userMapper.selectUser();
     }

@@ -23,17 +23,8 @@ public class UserRequestDto {
     @NotBlank(message = "비밀번호는 필수 입력 값입니다.")
     private String password;
 
-    @ApiParam(example = "이름")
-    private String name;
-
-    @ApiParam(example = "나이")
-    private int age;
-
-    @ApiParam(example = "전화번호")
-    private int phone;
-
-    @ApiParam(example = "성별")
-    private String gender;
+    @ApiParam(example = "닉네임")
+    private String nickname;
 
     @ApiParam(example = "회원번호")
     private int userSeq;

@@ -9,10 +9,7 @@
     <resultMap id="UserResponseMap" type="UserResponseDto">
         <result property="id" column="ID"></result>
         <result property="password" column="PASSWORD"></result>
-        <result property="name" column="NAME"></result>
-        <result property="age" column="AGE"></result>
-        <result property="phone" column="PHONE"></result>
-        <result property="gender" column="GENDER"></result>
+        <result property="nickname" column="NICKNAME"></result>
         <result property="userSeq" column="USER_SEQ"></result>
     </resultMap>
 
@@ -20,10 +17,7 @@
     <select id="selectUser" resultMap="UserResponseMap" >
         SELECT  ID,
                 PASSWORD,
-                NAME,
-                AGE,
-                PHONE,
-                GENDER,
+                NICKNAME,
                 USER_SEQ
         FROM    user
     </select>
@@ -33,19 +27,12 @@
             INTO    user
             (ID,
              PASSWORD,
-             NAME,
-             AGE,
-             PHONE,
-             GENDER,
+             NICKNAME,
              USER_SEQ
              )
-
             VALUES (#{id},
                     #{password},
-                    #{name},
-                    #{age},
-                    #{phone},
-                    #{gender},
+                    #{nickname},
                     NEXTVAL(new_schema.user_seq)
                     )
         </insert>
@@ -98,10 +85,7 @@
                 UPDATE  user
                 SET         ID = #{id},
                             PASSWORD = #{password},
-                            NAME = #{name},
-                            AGE = #{age},
-                            PHONE = #{phone},
-                            GENDER = #{gender}
+                            NICKNAME = #{nickname},
                 WHERE   USER_SEQ = #{userSeq}
             </update>
 
